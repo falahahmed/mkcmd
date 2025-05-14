@@ -3,6 +3,6 @@ Label: mkcmd
 Suite: stable
 Codename: focal
 Version: 1.0
-Architectures: amd64
+Architectures: amd64 focal
 Components: main
 Description: mkcmd package repository
