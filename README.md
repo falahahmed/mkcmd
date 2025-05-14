@@ -1,3 +1,3 @@
 # mkcmd
-### hello
-##hey
+
+`will update soon`
