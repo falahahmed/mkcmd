@@ -1,0 +1,7 @@
+Archive: stable
+Version: 1.0
+Component: main
+Origin: mkcmd
+Label: mkcmd
+Architecture: amd64
+Description: mkcmd package repository

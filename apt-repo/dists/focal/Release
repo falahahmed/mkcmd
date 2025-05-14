@@ -1,0 +1,21 @@
+Origin: mkcmd
+Label: mkcmd
+Suite: stable
+Codename: focal
+Version: 1.0
+Date: Wed, 14 May 2025 10:51:04 UTC
+Architectures: amd64
+Components: main
+Description: mkcmd package repository
+MD5Sum:
+ 9b07b2debd574ad5b6c1db81a0d705a9 609 main/binary-amd64/Packages
+ efc8415718d5c646aa8e46d786dc7dc9 447 main/binary-amd64/Packages.gz
+ 39ad2650dbdbc6e4b52abc95a8285892 130 main/binary-amd64/Release
+SHA1:
+ 2635e74c1f2831994d23ecea2f635ca69402e948 609 main/binary-amd64/Packages
+ 342422b108836933633b1d3707fe2b461c70a379 447 main/binary-amd64/Packages.gz
+ c89fa5a969f7b594b89082ffa879b9dfad403afd 130 main/binary-amd64/Release
+SHA256:
+ 727b6a78fe95091d94f0533e0309d8c1f00c09dbf71b394d084218face84f00e 609 main/binary-amd64/Packages
+ c4eb19b9c5c0a5194551115fb4ab4dca15022a672748e119f7b1a8e314eb504c 447 main/binary-amd64/Packages.gz
+ 8e41acc8ab123e039fd6667243bc0fb9c14af09463bae12514bf231f862aa092 130 main/binary-amd64/Release
