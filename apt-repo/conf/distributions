@@ -1,0 +1,4 @@
+Codename: focal
+Components: main
+Architectures: amd64 arm64   # Add 'all' along with other architectures
+SignWith: yes                    # Optional (if you want GPG signing)

@@ -1,0 +1,11 @@
+Package: mkcmd
+Version: 1.0
+Section: utils
+Priority: optional
+Architecture: all
+Maintainer: Falah Ahmed <kpfalah99@gmail.com>
+Description: A script to create a command from executable files.
+  Currently, it is only available for files like .AppImage
+  I want to add more file extensions. A helping hand is always welcome.
+  You can contact me at telegram: @chruxAdmin
+  github: @falahahmed
