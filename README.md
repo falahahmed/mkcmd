@@ -1,3 +1,3 @@
 # mkcmd
 
-`will update soon`
+```will update soon```
