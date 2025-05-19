@@ -7,6 +7,7 @@
 - [Quick Start](#quickstart)
   - [Installation](#installation)
   - [Usage](#usage)
+- [Community](#community)
 
 <a name="features" href="#"></a>
 ## Features
@@ -39,3 +40,10 @@
 ```bash
 mkcmd <command_name> <path_to_AppImage_file>
 ```
+
+
+## Get in touch with us
+<a name="community"></a>
+### Community
+Telegram Channel: @Adekacci ([link](https://t.me/adekacci))
+Telegram Group : @ChruxGroup ([link](https://t.me/chruxGroup))
