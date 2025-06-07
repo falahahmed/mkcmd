@@ -25,6 +25,10 @@ build:
 	# Update apt repo
 	reprepro -b apt-repo --ignore=wrongdistribution includedeb focal mkcmd.deb
 
+	# Create package
+	dpkg-scanpackages --arch all apt-repo/pool/ > apt-repo/Packages
+	gzip -k apt-repo/Packages
+
 clean:
 	echo "Cleaning up..."
 	rm -rf apt-repo/conf/distributions mkcmd/DEBIAN/control
