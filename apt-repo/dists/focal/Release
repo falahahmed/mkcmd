@@ -2,29 +2,29 @@ Origin: mkcmd
 Label: mkcmd
 Suite: stable
 Codename: focal
-Version: 1.0
-Date: Wed, 14 May 2025 10:54:59 UTC
+Version: 1.1
+Date: Sat, 07 Jun 2025 06:35:22 UTC
 Architectures: amd64 focal
 Components: main
 Description: mkcmd package repository
 MD5Sum:
- 9b07b2debd574ad5b6c1db81a0d705a9 609 main/binary-amd64/Packages
- efc8415718d5c646aa8e46d786dc7dc9 447 main/binary-amd64/Packages.gz
- 39ad2650dbdbc6e4b52abc95a8285892 130 main/binary-amd64/Release
- 9b07b2debd574ad5b6c1db81a0d705a9 609 main/binary-focal/Packages
- efc8415718d5c646aa8e46d786dc7dc9 447 main/binary-focal/Packages.gz
- 8e314367d5f38ae4fc65cc88e94a5dee 130 main/binary-focal/Release
+ 4bb4139df7a822863ae3b6eb4e7a5266 609 main/binary-amd64/Packages
+ 3e2483bc1f54dbb78b2fe74015b4f0b3 448 main/binary-amd64/Packages.gz
+ fcd73f35f225b51a13ca1cff30b61460 130 main/binary-amd64/Release
+ 4bb4139df7a822863ae3b6eb4e7a5266 609 main/binary-focal/Packages
+ 3e2483bc1f54dbb78b2fe74015b4f0b3 448 main/binary-focal/Packages.gz
+ cd9b29d83538a068b338b0c4fcf4c02e 130 main/binary-focal/Release
 SHA1:
- 2635e74c1f2831994d23ecea2f635ca69402e948 609 main/binary-amd64/Packages
- 342422b108836933633b1d3707fe2b461c70a379 447 main/binary-amd64/Packages.gz
- c89fa5a969f7b594b89082ffa879b9dfad403afd 130 main/binary-amd64/Release
- 2635e74c1f2831994d23ecea2f635ca69402e948 609 main/binary-focal/Packages
- 342422b108836933633b1d3707fe2b461c70a379 447 main/binary-focal/Packages.gz
- d1b9369ad1493129daa771b60cca230529712bb9 130 main/binary-focal/Release
+ 68d2ec214551338fd9c601e5d5f2551c0a09f331 609 main/binary-amd64/Packages
+ 51c91097c2213594e8b5347ba694d57cbf9776cf 448 main/binary-amd64/Packages.gz
+ a1cf702895a0e23d8fa3c47d8af5ca6baad2352c 130 main/binary-amd64/Release
+ 68d2ec214551338fd9c601e5d5f2551c0a09f331 609 main/binary-focal/Packages
+ 51c91097c2213594e8b5347ba694d57cbf9776cf 448 main/binary-focal/Packages.gz
+ 448b6105e4eee22cb36becc2b1d92ca1155ef4dd 130 main/binary-focal/Release
 SHA256:
- 727b6a78fe95091d94f0533e0309d8c1f00c09dbf71b394d084218face84f00e 609 main/binary-amd64/Packages
- c4eb19b9c5c0a5194551115fb4ab4dca15022a672748e119f7b1a8e314eb504c 447 main/binary-amd64/Packages.gz
- 8e41acc8ab123e039fd6667243bc0fb9c14af09463bae12514bf231f862aa092 130 main/binary-amd64/Release
- 727b6a78fe95091d94f0533e0309d8c1f00c09dbf71b394d084218face84f00e 609 main/binary-focal/Packages
- c4eb19b9c5c0a5194551115fb4ab4dca15022a672748e119f7b1a8e314eb504c 447 main/binary-focal/Packages.gz
- 00318785167cafce2fc662c25e0739d20e440947d583dc3cea7d55fcdc1db306 130 main/binary-focal/Release
+ 9a0a60de95a977110d9d3912e6159cfcc855e1979f724056108811d2f89824b1 609 main/binary-amd64/Packages
+ 1f4314e1fd7630a161333f96505cd433f729a6ce13ec2cf6dd8c55d028033d21 448 main/binary-amd64/Packages.gz
+ a63f038512fa551e3f2ef3609d431f08f5436dc4ac4c4b1babcf4e67b1e57c27 130 main/binary-amd64/Release
+ 9a0a60de95a977110d9d3912e6159cfcc855e1979f724056108811d2f89824b1 609 main/binary-focal/Packages
+ 1f4314e1fd7630a161333f96505cd433f729a6ce13ec2cf6dd8c55d028033d21 448 main/binary-focal/Packages.gz
+ 7b28dc0f1adaadc1451dd9ab85f8f6d635634ef074527b21928e31239553850d 130 main/binary-focal/Release

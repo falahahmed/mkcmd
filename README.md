@@ -10,6 +10,7 @@
 - [Community](#community)
 
 <a name="features" href="#"></a>
+
 ## Features
 - Quickly install an application from various installation files.
 - Create custom launch commands for installing applications
@@ -17,9 +18,11 @@
 - Supported installation file formats: .AppImage
 
 <a name="quickstart" href="#"></a>
+
 ## Quick Start
 
 <a name="installation" href="#"></a>
+
 ### Installation
 
 1. Add the package repo to sources list
@@ -36,6 +39,7 @@
    ```
 
 <a name="usage" href="#"></a>
+
 ### Usage
 ```bash
 mkcmd <command_name> <path_to_AppImage_file>
@@ -44,6 +48,7 @@ mkcmd <command_name> <path_to_AppImage_file>
 
 ## Get in touch with us
 <a name="community"></a>
+
 ### Community
 - Telegram Channel: ```@Adekacci``` ([link](https://t.me/adekacci))
 - Telegram Group : ```@ChruxGroup``` ([link](https://t.me/chruxGroup))
