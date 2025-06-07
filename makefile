@@ -22,6 +22,9 @@ build:
 	#  Build the Debian package
 	dpkg-deb --build mkcmd
 
+	# make deb file executable
+	sudo chmod 777 mkcmd.deb
+
 	# Update apt repo
 	reprepro -b apt-repo --ignore=wrongdistribution includedeb focal mkcmd.deb
 
