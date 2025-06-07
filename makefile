@@ -60,3 +60,4 @@ control:
 	echo "   I want to add more file extensions. A helping hand is always welcome." >> mkcmd/DEBIAN/control
 	echo "   You can contact me at telegram: @chruxAdmin" >> mkcmd/DEBIAN/control
 	echo "   github: @falahahmed" >> mkcmd/DEBIAN/control
+
