@@ -5,10 +5,10 @@ Maintainer: Falah Ahmed <kpfalah99@gmail.com>
 Priority: optional
 Section: utils
 Filename: pool/main/m/mkcmd/mkcmd_1.2_all.deb
-Size: 1010
-SHA256: 3b38ad2fee224bc54ef9a4be12c04169cf814435f256248ae5dc866f4647aee1
-SHA1: 14169d0e5ef921ed0640fa5ed78ef3f93d52eb42
-MD5sum: c721e0d82cd27302d2b7b293f0445a71
+Size: 1012
+SHA256: 604f1d4117798a37038f5dc21ef8b4ddba62871a0772a4f55a7624ecda99090c
+SHA1: 01c3ef5eca5b8bda7f49d2d8594529141d45e649
+MD5sum: 608cfbcc73e00da51036a5d4adc58d73
 Description: A script to create a command from executable files.
    Currently, it is only available for files like .AppImage
    I want to add more file extensions. A helping hand is always welcome.

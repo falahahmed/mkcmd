@@ -26,8 +26,8 @@ build:
 	reprepro -b apt-repo --ignore=wrongdistribution includedeb focal mkcmd.deb
 
 	# Create package
-	dpkg-scanpackages --arch all apt-repo/pool/ > apt-repo/Packages
-	gzip -k apt-repo/Packages
+	cd apt-repo && dpkg-scanpackages --arch all pool/ > Packages
+	cd apt-repo && gzip -kf Packages
 
 clean:
 	echo "Cleaning up..."
