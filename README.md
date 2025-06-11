@@ -27,7 +27,7 @@
 
 1. Add the package repo to sources list
   ```bash
-   echo "deb [trusted=yes] https://raw.githubusercontent.com/falahahmed/mkcmd/main/apt-repo ./" | sudo tee /etc/apt/sources.list.d/mkcmd.list
+   echo "deb [trusted=yes] https://falahahmed.github.io/lin-packs ./" | sudo tee /etc/apt/sources.list.d/mkcmd.list
    ```
 2. Update apt list
 ```bash
