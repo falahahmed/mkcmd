@@ -1,63 +1,91 @@
 # Basic Makefile
 
-VER ?= `cat VERSION`
+pac="mkcmd"
+
+VER ?= $(shell cat VERSION)
+
+GREEN=\033[0;32m
+RED=\033[0;31m
+WHITE=\033[1;37m
+
+devdeps=$(shell apt list build-essential debhelper dh-make devscripts reprepro 2>/dev/null | grep -c "installed")
 
 default:
-	echo "Nothing to do here."
+	@echo "Checking build dependencies..."
+	@if [ $(devdeps) -eq 5 ]; then \
+		echo "dependencies are installed"; \
+	else \
+		echo "$(RED)dependencies are not installed, please run $(GREEN)'make install'$(WHITE)"; \
+		exit 1; \
+	fi
 
-build:
-	echo "Installing build dependencies..."
-	sudo apt-get install build-essential debhelper devscripts dh-make reprepro
-	echo "Build dependencies installed."
+	@echo "Creating necessary directories..."
+	mkdir -p $(pac)/DEBIAN
+	mkdir -p $(pac)/usr/local/bin
+	mkdir -p apt-repo/conf
+	@echo "Directories created."
+	@cp $(pac).sh $(pac)/usr/local/bin/$(pac)
+	cp -r lib $(pac)/usr/local/bin/
+	@echo "$(VER)" > VERSION
 
-	# Copy the main script to package directory
-	mkdir -p mkcmd/usr/bin
-	mkdir -p mkcmd/DEBIAN
-	cp mkcmd.sh mkcmd/usr/bin/mkcmd
+install:
+	@echo "Installing build dependencies..."
+	@sudo apt-get install build-essential debhelper devscripts dh-make reprepro
+	@echo "Build dependencies installed."
 
-	# set version, config for distributions, control
-	make dist
-	make control
-
-	#  Build the Debian package
-	dpkg-deb --build mkcmd
-
-	# make deb file executable
-	sudo chmod 777 mkcmd.deb
-
-	# Update apt repo
-	reprepro -b apt-repo --ignore=wrongdistribution includedeb focal mkcmd.deb
-
-	# Create package
-	cd apt-repo && dpkg-scanpackages --arch all pool/ > Packages
-	cd apt-repo && gzip -kf Packages
-
-clean:
-	echo "Cleaning up..."
-	rm -rf apt-repo/conf/distributions mkcmd/DEBIAN/control
-	rm -rf apt-repo/db
-	echo "Cleanup complete."
-
-dist:
-	echo "Origin: mkcmd" > apt-repo/conf/distributions
-	echo "Label: mkcmd" >> apt-repo/conf/distributions
+config:
+	echo "Origin: $(pac)" > apt-repo/conf/distributions
+	echo "Label: $(pac)" >> apt-repo/conf/distributions
 	echo "Suite: stable" >> apt-repo/conf/distributions
 	echo "Codename: focal" >> apt-repo/conf/distributions
 	echo "Version: $(VER)" >> apt-repo/conf/distributions
 	echo "Architectures: amd64 focal" >> apt-repo/conf/distributions
 	echo "Components: main" >> apt-repo/conf/distributions
-	echo "Description: mkcmd package repository" >> apt-repo/conf/distributions
+	echo "Description: $(pac) package repository" >> apt-repo/conf/distributions
+
+	@echo "Created $(pac)/conf/distributions"
+
+	echo "Package: $(pac)" > $(pac)/DEBIAN/control
+	echo "Version: $(VER)" >> $(pac)/DEBIAN/control
+	echo "Section: utils" >> $(pac)/DEBIAN/control
+	echo "Priority: optional" >> $(pac)/DEBIAN/control
+	echo "Architecture: all" >> $(pac)/DEBIAN/control
+	echo "Maintainer: Falah Ahmed <kpfalah99@gmail.com>" >> $(pac)/DEBIAN/control
+	echo "Description: A script to create a command from executable files." >> $(pac)/DEBIAN/control
+	echo "   Currently, it is only available for files like .AppImage" >> $(pac)/DEBIAN/control
+	echo "   I want to add more file extensions. A helping hand is always welcome." >> $(pac)/DEBIAN/control
+	echo "   You can contact me at telegram: @chruxAdmin" >> $(pac)/DEBIAN/control
+	echo "   github: @falahahmed" >> $(pac)/DEBIAN/control
+
+	@echo "Created $(pac)/DEBIAN/control"
+
+build:
+
+	#  Build the Debian package
+	dpkg-deb --build $(pac)
+
+	# make deb file executable
+	sudo chmod 755 $(pac).deb
+
+	# Update apt repo
+	reprepro -b apt-repo --ignore=wrongdistribution includedeb focal $(pac).deb
+
+	# Create package
+	cd apt-repo && dpkg-scanpackages --arch all pool/ > Packages
+	cd apt-repo && gzip -kf Packages
+	sudo chmod 755 apt-repo/pool/main/m/$(pac)_$(VER)_all.deb
+	@echo "Building package completed"
+
+clean:
+	echo "Cleaning up..."
+	rm -rf $(pac)/*
+	rm -rf apt-repo/*
+	rm -f $(pac).deb
+	@echo "Cleaned up"
+
+dist:
+
 
 control:
-	echo "Package: mkcmd" > mkcmd/DEBIAN/control
-	echo "Version: $(VER)" >> mkcmd/DEBIAN/control
-	echo "Section: utils" >> mkcmd/DEBIAN/control
-	echo "Priority: optional" >> mkcmd/DEBIAN/control
-	echo "Architecture: all" >> mkcmd/DEBIAN/control
-	echo "Maintainer: Falah Ahmed <kpfalah99@gmail.com>" >> mkcmd/DEBIAN/control
-	echo "Description: A script to create a command from executable files." >> mkcmd/DEBIAN/control
-	echo "   Currently, it is only available for files like .AppImage" >> mkcmd/DEBIAN/control
-	echo "   I want to add more file extensions. A helping hand is always welcome." >> mkcmd/DEBIAN/control
-	echo "   You can contact me at telegram: @chruxAdmin" >> mkcmd/DEBIAN/control
-	echo "   github: @falahahmed" >> mkcmd/DEBIAN/control
+
 
