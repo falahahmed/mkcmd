@@ -19,13 +19,12 @@ default:
 		exit 1; \
 	fi
 
-	@echo "Creating necessary directories..."
-	mkdir -p $(pac)/DEBIAN
-	mkdir -p $(pac)/usr/local/bin
-	mkdir -p apt-repo/conf
-	@echo "Directories created."
+	@mkdir -p $(pac)/DEBIAN
+	@mkdir -p $(pac)/usr/local/bin
+	@mkdir -p apt-repo/conf
+	@echo "Necessary directories created."
 	@cp $(pac).sh $(pac)/usr/local/bin/$(pac)
-	cp -r lib $(pac)/usr/local/bin/
+	@echo "Script file copied"
 	@echo "$(VER)" > VERSION
 
 install:
@@ -34,53 +33,55 @@ install:
 	@echo "Build dependencies installed."
 
 config:
-	echo "Origin: $(pac)" > apt-repo/conf/distributions
-	echo "Label: $(pac)" >> apt-repo/conf/distributions
-	echo "Suite: stable" >> apt-repo/conf/distributions
-	echo "Codename: focal" >> apt-repo/conf/distributions
-	echo "Version: $(VER)" >> apt-repo/conf/distributions
-	echo "Architectures: amd64 focal" >> apt-repo/conf/distributions
-	echo "Components: main" >> apt-repo/conf/distributions
-	echo "Description: $(pac) package repository" >> apt-repo/conf/distributions
+	@echo "Origin: $(pac)" > apt-repo/conf/distributions
+	@echo "Label: $(pac)" >> apt-repo/conf/distributions
+	@echo "Suite: stable" >> apt-repo/conf/distributions
+	@echo "Codename: focal" >> apt-repo/conf/distributions
+	@echo "Version: $(VER)" >> apt-repo/conf/distributions
+	@echo "Architectures: amd64 focal" >> apt-repo/conf/distributions
+	@echo "Components: main" >> apt-repo/conf/distributions
+	@echo "Description: $(pac) package repository" >> apt-repo/conf/distributions
 
 	@echo "Created $(pac)/conf/distributions"
 
-	echo "Package: $(pac)" > $(pac)/DEBIAN/control
-	echo "Version: $(VER)" >> $(pac)/DEBIAN/control
-	echo "Section: utils" >> $(pac)/DEBIAN/control
-	echo "Priority: optional" >> $(pac)/DEBIAN/control
-	echo "Architecture: all" >> $(pac)/DEBIAN/control
-	echo "Maintainer: Falah Ahmed <kpfalah99@gmail.com>" >> $(pac)/DEBIAN/control
-	echo "Description: A script to create a command from executable files." >> $(pac)/DEBIAN/control
-	echo "   Currently, it is only available for files like .AppImage" >> $(pac)/DEBIAN/control
-	echo "   I want to add more file extensions. A helping hand is always welcome." >> $(pac)/DEBIAN/control
-	echo "   You can contact me at telegram: @chruxAdmin" >> $(pac)/DEBIAN/control
-	echo "   github: @falahahmed" >> $(pac)/DEBIAN/control
+	@echo "Package: $(pac)" > $(pac)/DEBIAN/control
+	@echo "Version: $(VER)" >> $(pac)/DEBIAN/control
+	@echo "Section: utils" >> $(pac)/DEBIAN/control
+	@echo "Priority: optional" >> $(pac)/DEBIAN/control
+	@echo "Architecture: all" >> $(pac)/DEBIAN/control
+	@echo "Maintainer: Falah Ahmed <kpfalah99@gmail.com>" >> $(pac)/DEBIAN/control
+	@echo "Description: A script to create a command from executable files." >> $(pac)/DEBIAN/control
+	@echo "   Currently, it is only available for files like .AppImage" >> $(pac)/DEBIAN/control
+	@echo "   I want to add more file extensions. A helping hand is always welcome." >> $(pac)/DEBIAN/control
+	@echo "   You can contact me at telegram: @chruxAdmin" >> $(pac)/DEBIAN/control
+	@echo "   github: @falahahmed" >> $(pac)/DEBIAN/control
 
 	@echo "Created $(pac)/DEBIAN/control"
 
 build:
 
 	#  Build the Debian package
-	dpkg-deb --build $(pac)
+	@dpkg-deb --build $(pac)
+	@echo "Build complete"
 
 	# make deb file executable
-	sudo chmod 755 $(pac).deb
+	@sudo chmod 755 $(pac).deb
 
 	# Update apt repo
-	reprepro -b apt-repo --ignore=wrongdistribution includedeb focal $(pac).deb
+	@reprepro -b apt-repo --ignore=wrongdistribution includedeb focal $(pac).deb
+	@echo "Apt repo updated"
 
 	# Create package
-	cd apt-repo && dpkg-scanpackages --arch all pool/ > Packages
-	cd apt-repo && gzip -kf Packages
-	sudo chmod 755 apt-repo/pool/main/m/$(pac)_$(VER)_all.deb
+	@cd apt-repo && dpkg-scanpackages --arch all pool/ > Packages
+	@cd apt-repo && gzip -kf Packages
+	@echo "Creatd 'Packages' file"
+	@sudo chmod 755 apt-repo/pool/main/m/$(pac)/$(pac)_$(VER)_all.deb
 	@echo "Building package completed"
 
 clean:
-	echo "Cleaning up..."
-	rm -rf $(pac)/*
-	rm -rf apt-repo/*
-	rm -f $(pac).deb
+	@rm -rf $(pac)/*
+	@rm -rf apt-repo/*
+	@rm -f $(pac).deb
 	@echo "Cleaned up"
 
 dist:
