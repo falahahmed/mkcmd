@@ -24,7 +24,8 @@ default:
 	@mkdir -p apt-repo/conf
 	@echo "Necessary directories created."
 	@cp $(pac).sh $(pac)/usr/local/bin/$(pac)
-	@echo "Script file copied"
+	@cp -r lib $(pac)/usr/local/bin/
+	@echo "Script files copied"
 	@echo "$(VER)" > VERSION
 
 install:
@@ -78,15 +79,13 @@ build:
 	@sudo chmod 755 apt-repo/pool/main/m/$(pac)/$(pac)_$(VER)_all.deb
 	@echo "Building package completed"
 
+transfer:
+	@rm /home/chrux/Documents/Web/adekacciorg.github.io/lin-packs/pool/main/m/mkcmd/*
+	@cp apt-repo/pool/main/m/$(pac)/$(pac)_$(VER)_all.deb /home/chrux/Documents/Web/adekacciorg.github.io/lin-packs/pool/main/m/mkcmd/
+	@echo "Package transferred to adekacciorg.github.io"
+
 clean:
 	@rm -rf $(pac)/*
 	@rm -rf apt-repo/*
 	@rm -f $(pac).deb
 	@echo "Cleaned up"
-
-dist:
-
-
-control:
-
-

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+
+source "$SCRIPT_DIR/lib/app_image.sh"
+
 VER=1.2
 
 args=$(getopt -o h --long help,version -n "$0" -- "$@")
@@ -12,6 +16,17 @@ eval set -- "$args"
 
 version=false
 help=false
+
+echo_help() {
+    echo "Usage: mkcmd [command_name] [path_to_executable]"
+    echo "Options:"
+    echo "  -h, --help      Show this help message"
+    echo "  --version       Show version information"
+}
+
+echo_version() {
+    echo "mkcmd version $VER"
+}
 
 while true; do
     case "$1" in
