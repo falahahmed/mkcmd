@@ -4,7 +4,7 @@ SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 
 source "$SCRIPT_DIR/lib/app_image.sh"
 
-VER=1.2
+VER=1.3
 
 args=$(getopt -o h --long help,version -n "$0" -- "$@")
 if [ $? != 0 ]; then
