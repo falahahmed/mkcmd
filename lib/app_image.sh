@@ -15,13 +15,18 @@ i_appimage () {
     if [ ! -d "/usr/apps/bin" ]; then
         sudo mkdir -p /usr/apps/bin
         sudo chmod 777 /usr/apps/bin
-        
+        export PATH=$PATH:/usr/apps/bin
+        if [ -f ~/.bashrc ]; then
+            echo "export PATH=\$PATH:/usr/apps/bin" >> ~/.bashrc
+        elif [ -f ~/.profile ]; then
+            echo "export PATH=\$PATH:/usr/apps/bin" >> ~/.profile
+        else
+            echo "No suitable file found to add PATH. Please add /usr/apps/bin to your PATH manually."
+        fi
     fi
 
     sudo mv $filepath /usr/apps/
     sudo chmod 755 "/usr/apps/$filename"
     sudo echo "/usr/apps/$filename" > "/usr/apps/bin/$command"
-    sudo gcc "/usr/apps/bin/$command.c" -o "/usr/apps/bin/$command"
-    sudo rm "/usr/apps/bin/$command.c"
-    sudo chmod 777 "/usr/apps/bin/$command"
+    sudo chmod 755 "/usr/apps/bin/$command"
 }
