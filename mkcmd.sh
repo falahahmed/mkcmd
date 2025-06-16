@@ -1,34 +1,38 @@
 #!/bin/bash
 
-start(){
-    if [ $# -lt 2 ]; then
-        echo "Usage: $0 <command_name> <path_to_executable>"
-        return 0
-    fi
+VER=1.2
 
-    command="$1"
+args=$(getopt -o h --long help,version -n "$0" -- "$@")
+if [ $? != 0 ]; then
+    echo "Usage: $0 [command_name] [path_to_executable]"
+    exit 1
+fi
 
-    filename="${2##*/}"
-    filepath="$2"
+eval set -- "$args"
 
-    if [ ! -d "$/usr/apps" ]; then
-        sudo mkdir -p /usr/apps
-    fi
-    if [ ! -d "/usr/apps/bin" ]; then
-        sudo mkdir -p /usr/apps/bin
-        sudo chmod 777 /usr/apps/bin
-    fi
+version=false
+help=false
 
-    sudo mv $filepath /usr/apps/
-    sudo echo "#include<stdlib.h>
-    int main(){
-        system(\"/usr/apps/$filename\");
-    }
-    " > "/usr/apps/bin/$command.c"
-    sudo gcc "/usr/apps/bin/$command.c" -o "/usr/apps/bin/$command"
-    sudo rm "/usr/apps/bin/$command.c"
-    sudo chmod 777 "/usr/apps/bin/$command"
-}
+while true; do
+    case "$1" in
+        -h|--help) help=true; shift ;;
+        --version) version=true; shift ;;
+        --) shift; break ;;
+        *) echo "Some error occurred" >&2; exit 1 ;;
+    esac
+done
 
-start $@
+if [ "$version" = true ]; then
+    echo_version
+    exit 0
+elif [ "$help" = true ]; then
+    echo_help
+    exit 0
+fi
 
+if [ $# -ne 2 ]; then
+    echo "Usage: $0 [command_name] [path_to_executable]"
+    exit 1
+fi
+
+i_appimage $@
