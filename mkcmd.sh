@@ -3,6 +3,7 @@
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 
 source "$SCRIPT_DIR/lib/app_image.sh"
+source "$SCRIPT_DIR/lib/deb.sh"
 
 VER=1.3
 
@@ -75,4 +76,8 @@ fi
 
 if [[ "$image" = true ]]; then
     i_appimage $@
+fi
+
+if [[ "$deb" = true ]]; then
+    i_deb $@
 fi
