@@ -6,7 +6,7 @@ source "$SCRIPT_DIR/lib/app_image.sh"
 
 VER=1.3
 
-args=$(getopt -o h --long help,version -n "$0" -- "$@")
+args=$(getopt -o h --long help,version,image,deb -n "$0" -- "$@")
 if [ $? != 0 ]; then
     echo "Usage: $0 [command_name] [path_to_executable]"
     exit 1
@@ -18,20 +18,29 @@ version=false
 help=false
 
 echo_help() {
-    echo "Usage: mkcmd [command_name] [path_to_executable]"
-    echo "Options:"
-    echo "  -h, --help      Show this help message"
-    echo "  --version       Show version information"
+    echo "Usage: mkcmd [type] [command_name] [path_to_executable]
+File type will be considered to be appImage if type is not provided"
+    echo "Types:
+    --image : For .appImage files
+    --deb   : For .deb files"
+    echo "Additional flags:
+    -h, --help      Show this help message
+    --version       Show version information"
 }
 
 echo_version() {
     echo "mkcmd version $VER"
 }
 
+image=false
+deb=false
+
 while true; do
     case "$1" in
         -h|--help) help=true; shift ;;
         --version) version=true; shift ;;
+        --image) image=true; shift ;;
+        --deb) deb=true; shift;;
         --) shift; break ;;
         *) echo "Some error occurred" >&2; exit 1 ;;
     esac
@@ -46,8 +55,24 @@ elif [ "$help" = true ]; then
 fi
 
 if [ $# -ne 2 ]; then
-    echo "Usage: $0 [command_name] [path_to_executable]"
+    echo "Usage: $0 [type] [command_name] [path_to_executable]"
     exit 1
 fi
 
-i_appimage $@
+types=0
+
+$image && ((types++))
+$deb && ((types++))
+
+if [[ $types -gt 1 ]]; then
+    echo "You can not specify more than one type in a command"
+    exit 1
+fi
+
+if [[ $types -eq 0 ]]; then
+    image=true
+fi
+
+if [[ "$image" = true ]]; then
+    i_appimage $@
+fi
