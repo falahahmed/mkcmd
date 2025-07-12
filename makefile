@@ -3,7 +3,6 @@
 pac="mkcmd"
 
 VER ?= $(shell cat VERSION)
-
 GREEN=\033[0;32m
 RED=\033[0;31m
 WHITE=\033[1;37m
@@ -60,7 +59,6 @@ config:
 	@echo "Created $(pac)/DEBIAN/control"
 
 build:
-
 	#  Build the Debian package
 	@dpkg-deb --build $(pac)
 	@echo "Build complete"
